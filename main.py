@@ -251,6 +251,9 @@ if not os.path.exists(f'output/v{VERSION}/ConfusionGraph.png'):
 if not os.path.exists(f"output/v{VERSION}/ClassificationResults.csv"):
     print("Classification Report")
 
+    Y_pred = model.predict(test_generator)
+    y_pred = np.argmax(Y_pred, axis=1)
+
     report = classification_report(test_generator.classes, y_pred, output_dict=True)
 
     df = pd.DataFrame(report).transpose()
